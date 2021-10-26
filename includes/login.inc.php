@@ -9,9 +9,9 @@ if(isset($_POST["logSub"]))
 	$uname=$_POST['uname'];
 	$pwd=$_POST['pwd'];
 	
-	include "../classes/dbconn.classes.php";
-	include "../classes/login.classes.php";
-	include "../classes/login_controller.classes.php";
+	include "../model/dbconn.classes.php";
+	include "../model/login.classes.php";
+	include "../controller/login_controller.classes.php";
 	
 	$login = new LoginController($uname, $pwd);
 	

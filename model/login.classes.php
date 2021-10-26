@@ -3,7 +3,7 @@ session_start();
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 ini_set('display_startup_errors', 1);
-//signup database kapcsolattal
+//login database kapcsolattal
 class Login extends database{
 	
 	protected function getUser($uname,$pwd){
@@ -20,8 +20,6 @@ class Login extends database{
 		}
 		
 		
-		
-
 		if($stmt->rowCount() == 0){
 			$stmt = null;
 			header("location: ../index.php?error=usernotfound");
@@ -53,9 +51,9 @@ class Login extends database{
 				exit();
 				}
 				
-			$user =$stmt->fetchAll(PDO::FETCH_ASSOC);
+			$user=$stmt->fetchAll(PDO::FETCH_ASSOC);
 			
-			session_start();
+			///Fetchelt felhasználó adatait lebontjuk azokra, amit ki szeretnénk iratni, vagy kezelni globálisan.
 			$_SESSION["userid"] = $user[0]["id"];
 			$_SESSION["User_name"] = $user[0]["username"];
 		

@@ -28,8 +28,6 @@ class LoginController extends Login{
 		
 
 	
-	
-	
 	private function InputEmpty(){
 		$result;
 		if(empty($this->uname) || empty($this->pwd))

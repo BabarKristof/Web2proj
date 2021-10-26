@@ -10,7 +10,7 @@ class database{
     public $conn;
 	public $log = array();
     protected function connect(){
-		
+		/// PDO kapcsolatteremtés az adatbázissal.
         $this->conn = null;    
         try{
             $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db, $this->username_WB, $this->password_WB);

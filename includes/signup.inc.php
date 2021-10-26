@@ -11,9 +11,9 @@ if(isset($_POST["regSub"]))
 	$pwdRe=$_POST['pwdRe'];
 	$email=$_POST['email'];
 	
-	include "../classes/dbconn.classes.php";
-	include "../classes/signup.classes.php";
-	include "../classes/signup_controller.classes.php";
+	include "../model/dbconn.classes.php";
+	include "../model/signup.classes.php";
+	include "../controller/signup_controller.classes.php";
 	
 	$signup = new SignupController($uname, $pwd, $pwdRe, $email);
 	
