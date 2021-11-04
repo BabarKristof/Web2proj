@@ -9,7 +9,7 @@ class database{
     private $db = "naplo";
     public $conn;
 	public $log = array();
-    protected function connect(){
+    public function connect(){
 		/// PDO kapcsolatteremtés az adatbázissal.
         $this->conn = null;    
         try{
