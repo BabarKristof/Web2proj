@@ -16,7 +16,7 @@ if(isset($_POST["logSub"]))
 	$login = new LoginController($uname, $pwd);
 	
 	$login->UserLogin();
-	header("location: ../index.php?error=none");
+	header("location: ../index.php");
 	
 }
 

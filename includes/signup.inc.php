@@ -18,7 +18,7 @@ if(isset($_POST["regSub"]))
 	$signup = new SignupController($uname, $pwd, $pwdRe, $email);
 	
 	$signup->Register();
-	header("location: ../index.php?error=none");
+
 	
 }
 
