@@ -56,6 +56,7 @@ class Login extends database{
 			///Fetchelt felhasználó adatait lebontjuk azokra, amit ki szeretnénk iratni, vagy kezelni globálisan.
 			$_SESSION["userid"] = $user[0]["id"];
 			$_SESSION["User_name"] = $user[0]["username"];
+			$_SESSION["loggedUser"] = $user[0]["VName"]." ".$user[0]["KName"]." (".$user[0]["username"].")";
 		
 			$stmt = null;
 		

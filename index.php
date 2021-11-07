@@ -16,7 +16,8 @@ $menulink="bemutatkozas";
   if (isset($_POST["pid"])) {
     $menulink=$_POST["pid"];
   }
-  
+
+
 ?>
 <html>
 <head>
@@ -28,7 +29,7 @@ $menulink="bemutatkozas";
     <?php
       $main_menu = new Menu();
       echo $main_menu->MenuKeszit();
-	  
+	
     ?>
 </nav>
     
@@ -40,7 +41,6 @@ $menulink="bemutatkozas";
 	  if(isset($_GET["pid"]) == $menulink){
 		  include("./view/".$menulink.".view.php");
 	  } else include_once("./view/".$menulink.".view.php"); 
-	  
 	  // a fentebb inicializált menulink változó alapértelmezetten a bemutatkozás-t kapja meg, 
 	  //így ezt hívjük meg, ha még nem történt post/get method
 	  

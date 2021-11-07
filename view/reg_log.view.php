@@ -6,6 +6,8 @@
 <!--Regisztrációs űrlap-->
 <form action="includes/signup.inc.php" method="post">
 	<table>
+	<tr><td><input type="text" name="vname" placeholder="Vezetéknév"></td></tr>
+	<tr><td><input type="text" name="kname" placeholder="Keresztnév"></td></tr>
 	<tr><td><input type="text" name="uname" placeholder="Felhasználónév"></td></tr>
 	<tr><td><input type="password" name="pwd" placeholder="Jelszó"></td></tr>
 	<tr><td><input type="password" name="pwdRe" placeholder="Jelszó újra"></td></tr>

@@ -22,6 +22,8 @@ include_once('./model/dbconn.classes.php');
       ";
       $menupontok = $this->connect()->prepare($sql);
       $menupontok->execute();
+		
+
 
       if ($menupontok->rowCount() != 0) {
         //csak akkor gyártjuk le az almenüt tartalmazó listát, ha van legalább
@@ -30,6 +32,8 @@ include_once('./model/dbconn.classes.php');
         $menupont = $menupontok->fetchAll(\PDO::FETCH_ASSOC);
 
         foreach ($menupont as $menu) {
+		// Megnézzük, hogy van-e vagy nincs bejelentkezett felhasználó, és ez alapján vagy a bejelentkezés, vagy a kilépés menüpont jelenik meg.
+		if(($menu['oldal_alias']!="reg_log" && !empty($_SESSION["User_name"])) || ($menu['oldal_alias']!="logout" && empty($_SESSION["User_name"]))){
           if ($melyseg == 1)
             $link = $menu["oldal_alias"];
           else
@@ -37,15 +41,23 @@ include_once('./model/dbconn.classes.php');
           $ki .= "<li class=\"menuitem\"><a href=\"?pid=$link\">".$menu["oldal_cim"]."</a>";
           $ki .= $this->MenuRekurziv($menu["id"], $link, $melyseg + 1);
           $ki .= "</li>";
+		  
+			}
         }
-
+		///Ha a felhasználó belép, akkor extra menüelemképp kiírjuk a bejelentkezett felhasználó nevét a feladat ártal kért formátumban.
+		if(!empty($_SESSION["User_name"])){
+		$ki .= "<li><a>".$_SESSION["loggedUser"]."<a></li>";
+		}
         $ki .= "</ul>";
+		
+		
         return $ki;
+		  
       } else {
         return "";
       }
     }  //MneuRekurziv
-    
+  
     public function MenuKeszit() {
       //az a meghívható metódus, és ez fogja meghívni a rekurziót először
       return $this->MenuRekurziv(0, "", 1);
@@ -83,6 +95,7 @@ include_once('./model/dbconn.classes.php');
             $aktualis_oldal = $menupont["id"];
             $felettes = $aktualis_oldal;
           }
+
         }
         return $aktualis_oldal;
       }

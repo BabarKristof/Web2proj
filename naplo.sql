@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2021. Nov 05. 16:03
+-- Létrehozás ideje: 2021. Nov 07. 20:50
 -- Kiszolgáló verziója: 10.4.21-MariaDB
 -- PHP verzió: 8.0.11
 
@@ -73,10 +73,10 @@ CREATE TABLE `menuk` (
 INSERT INTO `menuk` (`id`, `oldal_alias`, `oldal_cim`, `oldal_sorrend`, `oldal_felettes`, `aktiv`, `pub_date`, `unpub_date`) VALUES
 (1, 'bemutatkozas', 'Bemutatkozás', 1, 0, 1, '2011-03-11 00:00:00', '2111-03-11 00:00:00'),
 (2, 'reg_log', 'Regisztráció és belépés', 10, 0, 1, '2011-03-11 00:00:00', '2111-03-11 00:00:00'),
-(3, 'hiroldal', 'Híroldal', 20, 0, 1, '2011-03-11 00:00:00', '2111-03-11 00:00:00'),
-(4, 'alapinfok', 'Alapinfók', 1, 1, 1, '2011-03-11 00:00:00', '2111-03-11 00:00:00'),
-(5, 'kiegeszitesek', 'Kiegészítések', 2, 1, 1, '2011-03-11 00:00:00', '2111-03-11 00:00:00'),
-(6, 'aloldal_3', '3.sz. aloldal', 10, 4, 1, '2011-03-11 00:00:00', '2111-03-11 00:00:00'),
+(3, 'velemeny', 'Vélemények/Hírek', 20, 0, 1, '2011-03-11 00:00:00', '2111-03-11 00:00:00'),
+(4, 'logout', 'Kilépés', 30, 0, 1, '2011-03-11 00:00:00', '2111-03-11 00:00:00'),
+(5, 'soap', 'SOAP', 40, 0, 1, '2011-03-11 00:00:00', '2111-03-11 00:00:00'),
+(6, 'mnbsoap', 'MNB SOAP', 50, 0, 1, '2011-03-11 00:00:00', '2111-03-11 00:00:00'),
 (404, '', '404-es hiba', 0, 0, 1, '2011-01-01 00:00:00', '2111-01-01 00:00:00');
 
 -- --------------------------------------------------------
@@ -101,19 +101,49 @@ CREATE TABLE `users` (
   `id` int(255) NOT NULL,
   `username` varchar(40) COLLATE utf8_hungarian_ci NOT NULL,
   `password` varchar(70) COLLATE utf8_hungarian_ci NOT NULL,
-  `email` varchar(40) COLLATE utf8_hungarian_ci NOT NULL
+  `email` varchar(40) COLLATE utf8_hungarian_ci NOT NULL,
+  `VName` varchar(30) COLLATE utf8_hungarian_ci NOT NULL,
+  `KName` varchar(30) COLLATE utf8_hungarian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `email`) VALUES
-(8, 'asd', '$2y$10$8xZm8XlrnEwHmMyfnUolNeUVdf51cDYljoMpXMZxuLrpUlAf/9TEO', 'asd'),
-(9, 'asdfd', '$2y$10$DGnF2L1WvIyEiZdx5QUebutOJjXxJTrdCbpOw8jIizn3eJWhxEe.q', 'asfsdf'),
-(10, 'asd123', '$2y$10$wzGfM4Ka.K4jG139oRs/leO61SQC0qmpt8PcbVbBgt77aFfIqTVUi', 'asd123'),
-(11, 'Jozsi', '$2y$10$3V8KUJ2WnciJ1EUxxKFKqOL4OP9YzxVafBhzbIRkpNPzpUM8Qo8Pq', 'jozsi@gmail.com'),
-(12, 'aaa', '$2y$10$WTiqsoBf/O0ah1qN1sAT7OXQSTJ0K3MXXYmIIMyRBXpkwIK520q96', 'asd@aa.com');
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `VName`, `KName`) VALUES
+(8, 'asd', '$2y$10$8xZm8XlrnEwHmMyfnUolNeUVdf51cDYljoMpXMZxuLrpUlAf/9TEO', 'asd', '', ''),
+(9, 'asdfd', '$2y$10$DGnF2L1WvIyEiZdx5QUebutOJjXxJTrdCbpOw8jIizn3eJWhxEe.q', 'asfsdf', '', ''),
+(10, 'asd123', '$2y$10$wzGfM4Ka.K4jG139oRs/leO61SQC0qmpt8PcbVbBgt77aFfIqTVUi', 'asd123', '', ''),
+(11, 'Jozsi', '$2y$10$3V8KUJ2WnciJ1EUxxKFKqOL4OP9YzxVafBhzbIRkpNPzpUM8Qo8Pq', 'jozsi@gmail.com', '', ''),
+(12, 'aaa', '$2y$10$WTiqsoBf/O0ah1qN1sAT7OXQSTJ0K3MXXYmIIMyRBXpkwIK520q96', 'asd@aa.com', '', ''),
+(13, 'admin', '$2y$10$0Nu95o9ou1iNySDdOFAQIePcmF6VPQDGj5B8g5kezeWphPVIjnTbu', 'admin@admin.com', '', ''),
+(14, 'asd2', '$2y$10$OUkM4AkJlmqA2KzU2T2IduAyq4CRaRulR2RzND1oIyjYIlze7sNf.', 'asd2@asd.com', '', ''),
+(15, 'asd3', '$2y$10$lQnDM4kl6Ma9DiQTbdVB0uja9sDSp6p4UqZJ9J7EH/hmaBXu.xRJy', 'asd@asd3.com', '', ''),
+(16, 'aa', '$2y$10$mpgbK2eSHSDNPHr..QXxvuD4EyFpSVUERS3pBvEHCq6opSvo2HhdC', 'asd@asd.com', '', ''),
+(17, 'asd4', '$2y$10$dMplJVfrqsdNdg8IvWRQQ.C5cyYw2xEveqSnj2VeG0SBrh4umBt76', 'asd@asd4.com', '', ''),
+(18, 'asd5', '$2y$10$3T0ZrhclK7QwyFvuJWLTheine9W5SMQnChIf6CIkKpEv1XEaxDmw.', 'asd@gmail.com', 'Pista', 'Bácsi');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `velemenyek`
+--
+
+CREATE TABLE `velemenyek` (
+  `id` int(255) NOT NULL,
+  `userid` int(255) NOT NULL,
+  `velemeny` varchar(255) COLLATE utf8_hungarian_ci NOT NULL,
+  `datum` int(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `velemenyek`
+--
+
+INSERT INTO `velemenyek` (`id`, `userid`, `velemeny`, `datum`) VALUES
+(16, 8, 'asd', 0),
+(17, 18, 'asdasd', 0),
+(18, 18, 'asd', 0);
 
 --
 -- Indexek a kiírt táblákhoz
@@ -152,6 +182,13 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
+-- A tábla indexei `velemenyek`
+--
+ALTER TABLE `velemenyek`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userid` (`userid`);
+
+--
 -- A kiírt táblák AUTO_INCREMENT értéke
 --
 
@@ -177,7 +214,13 @@ ALTER TABLE `targy`
 -- AUTO_INCREMENT a táblához `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT a táblához `velemenyek`
+--
+ALTER TABLE `velemenyek`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Megkötések a kiírt táblákhoz
@@ -189,6 +232,12 @@ ALTER TABLE `users`
 ALTER TABLE `jegy`
   ADD CONSTRAINT `jegy_ibfk_1` FOREIGN KEY (`diakid`) REFERENCES `diak` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `jegy_ibfk_2` FOREIGN KEY (`targyid`) REFERENCES `targy` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Megkötések a táblához `velemenyek`
+--
+ALTER TABLE `velemenyek`
+  ADD CONSTRAINT `velemenyek_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

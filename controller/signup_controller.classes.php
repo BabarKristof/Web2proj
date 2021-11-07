@@ -8,13 +8,17 @@ class SignupController extends Signup{
 	private $pwd;
 	private $pwdRe;
 	private $email;
+	private $vname;
+	private $kname;
 	
 
-	public function __construct($uname, $pwd, $pwdRe, $email){
+	public function __construct($uname, $pwd, $pwdRe, $email,$vname,$kname){
 		$this->uname = $uname; 
 		$this->pwd = $pwd;
 		$this->pwdRe = $pwdRe ;
 		$this->email = $email; 
+		$this->vname = $vname; 
+		$this->kname = $kname; 
 		
 	}
 	
@@ -34,7 +38,7 @@ class SignupController extends Signup{
 			exit();
 		}
 		
-		$this->setUser($this->uname,$this->pwd,$this->email); 
+		$this->setUser($this->uname,$this->pwd,$this->email,$this->vname,$this->kname); 
 	}
 		
 	
@@ -45,7 +49,7 @@ class SignupController extends Signup{
 	private function InputEmpty(){
 		$result;
 		if(empty($this->uname) || empty($this->pwd) || 
-		   empty($this->pwdRe) || empty($this->email))
+		   empty($this->pwdRe) || empty($this->email) || empty($this->vname) || empty($this->kname))
 		{
 			$result = false;  	
 		}
