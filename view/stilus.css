@@ -1,4 +1,4 @@
-ul {
+nav#navClass ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -8,11 +8,11 @@ ul {
 body{
 	background-color:lightblue;
 }
-li {
+nav#navClass li{
   float: left;
 }
 
-li a {
+nav#navClass li a {
   display: block;
   color: white;
   text-align: center;
@@ -28,11 +28,11 @@ li a {
   text-decoration: none;
 }
 
-li a:hover {
+nav#navClass li a:hover {
   background-color: #111;
 }
 
-a{
+nav#navClass a{
 	text-decoration:none;
 	color:#000;
 }

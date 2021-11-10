@@ -24,8 +24,7 @@ $menulink="bemutatkozas";
 <link rel="stylesheet" href="./view/stilus.css" type="text/css"/>
 </head>
 <body>
-
-<nav>
+<nav id="navClass">
     <?php
       $main_menu = new Menu();
       echo $main_menu->MenuKeszit();
@@ -36,7 +35,6 @@ $menulink="bemutatkozas";
 <div id="content">
     <?php
 //Keresett oldal megjelenítési a menü kontroller php segítségével, view mappából. - oldal ID alapján.	
-	
       $ActualPage=$main_menu->MenupontVisszakeres($menulink);
 	  if(isset($_GET["pid"]) == $menulink){
 		  include("./view/".$menulink.".view.php");
@@ -49,8 +47,3 @@ $menulink="bemutatkozas";
 
 </body>
 </html>
-
-<?php
-//https://youtu.be/BaEm2Qv14oU?t=2501
-
-?>
