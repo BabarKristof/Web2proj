@@ -5,15 +5,15 @@ ini_set('display_startup_errors', 1);
 //signup database kapcsolattal
 class Signup extends database{
 	
-	protected function setUser($uname,$pwd,$email){
-		$sql = ('INSERT INTO users (username,password,email) VALUES (?,?,?);');
+	protected function setUser($uname,$pwd,$email,$vname,$kname,){
+		$sql = ('INSERT INTO users (username,password,email,vname,kname) VALUES (?,?,?,?,?);');
 		$stmt = $this->connect()->prepare($sql);
 		
 		//jelszó kódolás
 		$hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
 		
 		//Ha hiba van a beküldéssel, kilép
-		if(!$stmt->execute(array($uname,$hashedPwd,$email))){
+		if(!$stmt->execute(array($uname,$hashedPwd,$email,$vname,$kname))){
 			$stmt = null;
 			header("location: ../index.php?error=stmtfailed");
 			exit();
