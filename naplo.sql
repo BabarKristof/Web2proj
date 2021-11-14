@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2021. Nov 07. 20:50
+-- Létrehozás ideje: 2021. Nov 14. 19:33
 -- Kiszolgáló verziója: 10.4.21-MariaDB
 -- PHP verzió: 8.0.11
 
@@ -116,12 +116,14 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `VName`, `KName`) VA
 (10, 'asd123', '$2y$10$wzGfM4Ka.K4jG139oRs/leO61SQC0qmpt8PcbVbBgt77aFfIqTVUi', 'asd123', '', ''),
 (11, 'Jozsi', '$2y$10$3V8KUJ2WnciJ1EUxxKFKqOL4OP9YzxVafBhzbIRkpNPzpUM8Qo8Pq', 'jozsi@gmail.com', '', ''),
 (12, 'aaa', '$2y$10$WTiqsoBf/O0ah1qN1sAT7OXQSTJ0K3MXXYmIIMyRBXpkwIK520q96', 'asd@aa.com', '', ''),
-(13, 'admin', '$2y$10$0Nu95o9ou1iNySDdOFAQIePcmF6VPQDGj5B8g5kezeWphPVIjnTbu', 'admin@admin.com', '', ''),
 (14, 'asd2', '$2y$10$OUkM4AkJlmqA2KzU2T2IduAyq4CRaRulR2RzND1oIyjYIlze7sNf.', 'asd2@asd.com', '', ''),
 (15, 'asd3', '$2y$10$lQnDM4kl6Ma9DiQTbdVB0uja9sDSp6p4UqZJ9J7EH/hmaBXu.xRJy', 'asd@asd3.com', '', ''),
 (16, 'aa', '$2y$10$mpgbK2eSHSDNPHr..QXxvuD4EyFpSVUERS3pBvEHCq6opSvo2HhdC', 'asd@asd.com', '', ''),
 (17, 'asd4', '$2y$10$dMplJVfrqsdNdg8IvWRQQ.C5cyYw2xEveqSnj2VeG0SBrh4umBt76', 'asd@asd4.com', '', ''),
-(18, 'asd5', '$2y$10$3T0ZrhclK7QwyFvuJWLTheine9W5SMQnChIf6CIkKpEv1XEaxDmw.', 'asd@gmail.com', 'Pista', 'Bácsi');
+(18, 'asd5', '$2y$10$3T0ZrhclK7QwyFvuJWLTheine9W5SMQnChIf6CIkKpEv1XEaxDmw.', 'asd@gmail.com', 'Pista', 'Bácsi'),
+(19, 'Laszlo', '$2y$10$i988V0PDra16IgmFoFEYC.3D/C43XF2uL13xANv50g2iTIZ/hDg1G', 'laszlo@gmail.com', '', ''),
+(21, 'Jozsika', '$2y$10$Q2cFRbEMkn1/igUtro6uFuD1OgiElu61sxdkJqBu0JsvPzklUEdya', 'asd@jozsika.hu', 'Jozsef', 'Bacsi'),
+(22, 'admin', '$2y$10$oKO.Xd9tLpl/QMl/ktKP8OFuNPfCCxu1PqCA6D2dp1960wOOHGisy', 'admin@admin.hu', 'admin', 'admin');
 
 -- --------------------------------------------------------
 
@@ -133,7 +135,7 @@ CREATE TABLE `velemenyek` (
   `id` int(255) NOT NULL,
   `userid` int(255) NOT NULL,
   `velemeny` varchar(255) COLLATE utf8_hungarian_ci NOT NULL,
-  `datum` int(50) NOT NULL
+  `datum` varchar(40) COLLATE utf8_hungarian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
@@ -141,9 +143,26 @@ CREATE TABLE `velemenyek` (
 --
 
 INSERT INTO `velemenyek` (`id`, `userid`, `velemeny`, `datum`) VALUES
-(16, 8, 'asd', 0),
-(17, 18, 'asdasd', 0),
-(18, 18, 'asd', 0);
+(16, 8, 'asd', '0000-00-00'),
+(17, 18, 'asdasd', '0000-00-00'),
+(18, 18, 'asd', '0000-00-00'),
+(19, 8, 'sdfs', '0000-00-00'),
+(20, 8, 'sdf', '0000-00-00'),
+(21, 8, 'asd', '0000-00-00'),
+(22, 8, 'asd', '2021-11-11'),
+(23, 8, 'asd', '2021-11-11'),
+(24, 8, 'sdf', '2021-11-11'),
+(25, 8, 'sdfsdf', '2021-11-11'),
+(26, 8, 'dfgdfg', '2021-11-11 09:52:08'),
+(31, 8, 'sdfs', '2021-11-14 06:09:22'),
+(32, 8, '', '2021-11-14 06:12:18'),
+(33, 8, '', '2021-11-14 06:12:54'),
+(34, 8, '', '2021-11-14 06:12:58'),
+(35, 8, 'asd', '2021-11-14 06:15:14'),
+(36, 22, 'Teszt 1', '2021-11-14 06:27:55'),
+(37, 22, 'Teszt 2', '2021-11-14 06:27:58'),
+(38, 22, 'Teszt 3', '2021-11-14 06:28:01'),
+(39, 22, 'Teszt 4', '2021-11-14 06:28:03');
 
 --
 -- Indexek a kiírt táblákhoz
@@ -214,13 +233,13 @@ ALTER TABLE `targy`
 -- AUTO_INCREMENT a táblához `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT a táblához `velemenyek`
 --
 ALTER TABLE `velemenyek`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- Megkötések a kiírt táblákhoz
