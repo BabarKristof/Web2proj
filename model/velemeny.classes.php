@@ -40,17 +40,12 @@ class submitV extends database{
 				
 			$velemenyList=$stmt->fetchAll(PDO::FETCH_ASSOC);
 
-			//die();
-			///Fetchelt felhasználó adatait lebontjuk azokra, amit ki szeretnénk iratni, vagy kezelni globálisan.
+
 			$_SESSION['ALLvelemeny']=$velemenyList;
 			
 			
 			
-			/*foreach($velemenyList as $values) {
-				var_dump($values);
-				die();
-				$_SESSION['ALLvelemeny'] += $values;
-			}*/
+
 		
 	}
 	
