@@ -17,6 +17,10 @@ class VelemenyController extends submitV{
 	public function Velemenyez(){
 		$this->postVelemeny($this->userid,$this->velemeny); 
 	}
+
+	public function VelemenyLista(){
+		$this->reqVelemeny($this->userid,$this->velemeny); 
+	}
 		
 }
 	

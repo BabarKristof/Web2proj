@@ -21,6 +21,7 @@ $menulink="bemutatkozas";
 ?>
 <html>
 <head>
+<title>Diakkolcsonzo</title>
 <link rel="stylesheet" href="./view/stilus.css" type="text/css"/>
 </head>
 <body>
@@ -28,7 +29,6 @@ $menulink="bemutatkozas";
     <?php
       $main_menu = new Menu();
       echo $main_menu->MenuKeszit();
-	
     ?>
 </nav>
     
